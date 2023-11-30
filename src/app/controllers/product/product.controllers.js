@@ -44,7 +44,7 @@ export const deleteAProduct = async (id) => {
 
 export const createProduct = async (newproduct) => {
   const res = await fetch(
-    `${url}`,
+    `${url}/products`,
     {
       method: "POST",
       headers: {
