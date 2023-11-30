@@ -1,6 +1,6 @@
 import { redirect } from "next/dist/server/api-utils";
 
-const url = "eccomerce-next14.vercel.app";
+const url = "https://eccomerce-next14.vercel.app";
 
 export const getAllProduct = async () => {
   const res = await fetch(url, {
