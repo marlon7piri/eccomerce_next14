@@ -3,7 +3,7 @@ import { redirect } from "next/dist/server/api-utils";
 const url = "https://eccomerce-next14.vercel.app";
 
 export const getAllProduct = async () => {
-  const res = await fetch(url, {
+  const res = await fetch(`${url}/api/product`, {
     cache: "no-store",
   });
 
@@ -16,7 +16,7 @@ export const getAllProduct = async () => {
 };
 
 export const getOnlyAProduct = async (id) => {
-  const res = await fetch(`${url}/${id}`);
+  const res = await fetch(`${url}/api/product/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -27,7 +27,7 @@ export const getOnlyAProduct = async (id) => {
 
 export const deleteAProduct = async (id) => {
   const res = await fetch(
-    `${url}/${id}`,
+    `${url}/api/product/${id}`,
     {
       method: "DELETE",
     },
@@ -44,7 +44,7 @@ export const deleteAProduct = async (id) => {
 
 export const createProduct = async (newproduct) => {
   const res = await fetch(
-    `${url}/product`,
+    `${url}/api/product`,
     {
       method: "POST",
       headers: {
