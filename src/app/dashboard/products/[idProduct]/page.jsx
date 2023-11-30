@@ -4,14 +4,16 @@ import React from "react";
 
 import { useForm } from "react-hook-form";
 import Image from "next/image";
-import { getOnlyAProduct } from "@/app/libs/actions";
+import {getOnlyAProduct} from '@/app/controllers/product/product.controllers'
 
 async function EditProduct({params}) {
+
+  const {register,handleSubmit,formState:{errors}} =useForm()
   
     const userfound  =  await getOnlyAProduct(params.idProduct)
-    console.log(userfound)
+   /*  console.log(userfound) */
   return (
-    <form className="w-full h-full p-4" onSubmit={handleSubmit(handlerChange)}>
+    <form className="w-full h-full p-4">
      
 
       <fieldset className="w-full h-full border border-gray-200 p-1 flex gap-4">

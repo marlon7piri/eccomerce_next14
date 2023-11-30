@@ -1,5 +1,6 @@
 import  React from "react"
 import Link from 'next/link'
+
 export default function Home() {
   return (
     <main className="bg-gray-900  w-full h-screen flex justify-center items-center">
