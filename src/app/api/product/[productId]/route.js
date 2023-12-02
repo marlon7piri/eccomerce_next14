@@ -1,6 +1,7 @@
 import { Products } from "@/app/libs/models";
 import { connectDb } from "@/app/libs/mongodb";
 import { NextResponse } from "next/server";
+import { redirect, router } from "next/navigation";
 
 export async function GET(req, { params }) {
   const id = params.productId;
@@ -20,13 +21,13 @@ export async function GET(req, { params }) {
 export async function DELETE(req, { params }) {
   const id = params.productId;
 
+  await connectDb();
   try {
-    connectDb();
-    const productfound = await Products.findByIdAndDelete(id);
+    const productdeleted = await Products.findByIdAndDelete(id);
 
-    if (!productfound) return NextResponse.status(404);
+    if (!productdeleted) return NextResponse.json(404);
 
-    return NextResponse.json(productfound);
+    return NextResponse.json(productdeleted);
   } catch (error) {
     return NextResponse.json({ message: error });
   }
@@ -38,12 +39,14 @@ export async function PUT(req, { params }) {
   const product = await req.json();
   const { title, price, description, stock } = product;
 
-
-
   try {
     const productatupdated = { title, price, description, stock };
     connectDb();
-    const productupdated = await Products.findByIdAndUpdate(id, productatupdated,{$set:true});
+    const productupdated = await Products.findByIdAndUpdate(
+      id,
+      productatupdated,
+      { $set: true }
+    );
 
     if (!productupdated) return NextResponse.status(404);
 
@@ -52,6 +55,3 @@ export async function PUT(req, { params }) {
     return NextResponse.json({ message: error });
   }
 }
-
-
-  

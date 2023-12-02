@@ -6,7 +6,7 @@ import { deleteUser } from "@/app/libs/actions";
 import TablaOFUsers from "./TablaOFUsers";
 
 const ListOfUsers = ({ data }) => {
-  console.log(data);
+ 
 
   return (
     

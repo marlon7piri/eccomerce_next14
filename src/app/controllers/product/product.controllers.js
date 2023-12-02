@@ -1,18 +1,25 @@
 import { redirect } from "next/dist/server/api-utils";
 
-const url = "https://eccomerce-next14.vercel.app";
+const url = "http://localhost:3000";
 
 export const getAllProduct = async () => {
-  const res = await fetch(`${url}/api/product`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${url}/api/product`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+    {
+      cache: "no-cache",
+    }
+  );
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  const data = await res.json();
-
-  return Response.json(data);
+  return res.json();
 };
 
 export const getOnlyAProduct = async (id) => {
@@ -21,6 +28,7 @@ export const getOnlyAProduct = async (id) => {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
+  
 
   return res.json();
 };
@@ -30,36 +38,25 @@ export const deleteAProduct = async (id) => {
     `${url}/api/product/${id}`,
     {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
     { cache: "no-store" }
   );
 
   if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    throw new Error("Failed to deleted data");
   }
-  const data = await res.json();
-
-  return Response.json(data);
+  return res.json();
+  
 };
 
 export const createProduct = async (newproduct) => {
-  const res = await fetch(
-    `${url}/api/product`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newproduct),
-    },
-    { cache: "no-store" },
-    {}
-  );
+ 
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-  const data = await res.json();
-
-  return Response.json(data);
+  return res.json();
 };

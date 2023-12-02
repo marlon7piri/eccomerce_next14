@@ -4,7 +4,7 @@ import { Products, User } from "./models";
 import { connectDb } from "./mongodb";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
-import {NextRequest} from 'next/server'
+import { NextRequest } from "next/server";
 
 export const addProduct = async (formData) => {
   const { title, price, description, stock, image } =
@@ -83,6 +83,7 @@ export const deleteUser = async (formData) => {
     connectDb();
 
     const userfound = await User.findByIdAndDelete(id);
+    if (!userfound) return Response.json("error deleting users");
   } catch (error) {
     console.log(error);
     throw new Error("Failed founding a  user");
@@ -105,11 +106,13 @@ export const editUser = async (formData) => {
       isAdmin,
       isActive,
       phone,
-      address
+      address,
     };
 
-    Object.keys(updateField).forEach((key)=>(updateField[key]==="" || undefined) && delete updateField[key])
-    await User.findByIdAndUpdate(id,updateField)
+    Object.keys(updateField).forEach(
+      (key) => (updateField[key] === "" || undefined) && delete updateField[key]
+    );
+    await User.findByIdAndUpdate(id, updateField);
   } catch (error) {
     console.log(error);
     throw new Error("Failed update user");
@@ -118,59 +121,59 @@ export const editUser = async (formData) => {
   redirect("/dashboard/users");
 };
 
-
 export const deleteProduct = async (formData) => {
-    const { id } = Object.fromEntries(formData);
-    try {
-      connectDb();
-  
-       await Products.findByIdAndDelete(id);
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed deleted a  user");
-    }
-    revalidatePath("/dashboard/products");
-    redirect("/dashboard/products");
-  };
+  const { id } = Object.fromEntries(formData);
+  try {
+    connectDb();
 
-  export const editProduct = async (formData) => {
-    const { id, name, password, email, isAdmin, isActive, phone, address } =
-      Object.fromEntries(formData);
-  
-    try {
-      connectDb();
-  
-      const updateField = {
-        name,
-        password,
-        email,
-        isAdmin,
-        isActive,
-        phone,
-        address
-      };
-  
-      Object.keys(updateField).forEach((key)=>(updateField[key]==="" || undefined) && delete updateField[key])
-      await User.findByIdAndUpdate(id,updateField)
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed update user");
-    }
-    revalidatePath("/dashboard/users");
-    redirect("/dashboard/users");
-  };
+    await Products.findByIdAndDelete(id);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed deleted a  user");
+  }
+  revalidatePath("/dashboard/products");
+  redirect("/dashboard/products");
+};
 
-  export const getOnlyAProduct = async (id) => {
-    try {
-      connectDb();
-  
-      const productfound = await Products.findById(id);
-  
-      return productfound;
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed founding a  product");
-    }
-    revalidatePath("/dashboard/users");
-  };
+export const editProduct = async (formData) => {
+  const { id, name, password, email, isAdmin, isActive, phone, address } =
+    Object.fromEntries(formData);
 
+  try {
+    connectDb();
+
+    const updateField = {
+      name,
+      password,
+      email,
+      isAdmin,
+      isActive,
+      phone,
+      address,
+    };
+
+    Object.keys(updateField).forEach(
+      (key) => (updateField[key] === "" || undefined) && delete updateField[key]
+    );
+    await User.findByIdAndUpdate(id, updateField);
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed update user");
+  }
+  revalidatePath("/dashboard/users");
+  redirect("/dashboard/users");
+};
+
+export const getOnlyAProduct = async (id) => {
+  try {
+    connectDb();
+
+    const productfound = await Products.findById(id);
+
+    return productfound;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed founding a  product");
+  }
+  revalidatePath("/dashboard/users");
+};
