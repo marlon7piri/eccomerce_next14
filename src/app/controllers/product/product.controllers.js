@@ -5,7 +5,7 @@ const url2 = "https://eccomerce-next14-marlon7piri.vercel.app/dashboard";
 
 export const getAllProduct = async () => {
   const res = await fetch(
-    `${url}/api/product`,
+    `${url2}/api/product`,
     {
       method: "GET",
       headers: {
@@ -24,7 +24,7 @@ export const getAllProduct = async () => {
 };
 
 export const getOnlyAProduct = async (id) => {
-  const res = await fetch(`${url}/api/product/${id}`);
+  const res = await fetch(`${url2}/api/product/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -36,7 +36,7 @@ export const getOnlyAProduct = async (id) => {
 
 export const deleteAProduct = async (id) => {
   const res = await fetch(
-    `${url}/api/product/${id}`,
+    `${url2}/api/product/${id}`,
     {
       method: "DELETE",
       headers: {
