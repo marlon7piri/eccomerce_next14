@@ -25,6 +25,7 @@ const AddProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", imagen);
+    formData.append("upload_preset", "alalmapreset");
     formData.append("title", title);
     formData.append("price", price);
     formData.append("description", description);
