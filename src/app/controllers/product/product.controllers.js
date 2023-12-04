@@ -1,7 +1,7 @@
 import { redirect } from "next/dist/server/api-utils";
 
 const url = "http://localhost:3000";
-const url2 = "https://eccomerce-next14.vercel.app/dashboard";
+const url2 = "https://eccomerce-next14.vercel.app";
 
 export const getAllProduct = async () => {
   const res = await fetch(
