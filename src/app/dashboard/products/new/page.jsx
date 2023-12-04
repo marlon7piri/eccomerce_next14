@@ -33,7 +33,7 @@ const AddProduct = () => {
 
     try {
       const res = await fetch(
-        `/api/upload`,
+        `https://eccomerce-next14.vercel.app/api/upload`,
         {
           method: "POST",
 

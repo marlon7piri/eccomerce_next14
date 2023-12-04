@@ -29,14 +29,14 @@ export async function POST(req) {
   const buffer = Buffer.from(bytes);
 
   //crear la ruta del archivo
-  const rutaarchivo = path.join(process.cwd(), "public", image.name);
+ // const rutaarchivo = path.join(process.cwd(), "public", image.name);
   //console.log(rutaarchivo);
   //guardar el archivo en la ruta
-  await writeFile(rutaarchivo, buffer);
-  const response = await cloudinary.uploader.upload(rutaarchivo);
+  //await writeFile(rutaarchivo, buffer);
+  //const response = await cloudinary.uploader.upload(rutaarchivo);
 
   //metodo sin guardar en memoria
-  /* const response = await new Promise((resolve, reject) => {
+  const response = await new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload_stream({}, (error, result) => {
         if (error) {
@@ -46,7 +46,7 @@ export async function POST(req) {
       })
       .end(buffer);
   });
-*/
+
   console.log(response) 
 
 
