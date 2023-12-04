@@ -43,7 +43,7 @@ const AddProduct = () => {
 
       const data = await res.json();
       console.log(data);
-       //router.push("/dashboard/products");
+      router.push("/dashboard/products");
     } catch (error) {}
 
    
