@@ -25,7 +25,7 @@ const AddProduct = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", imagen);
-    formData.append("upload_preset", "alalmapreset");
+    //formData.append("upload_preset", "alalmapreset");
     formData.append("title", title);
     formData.append("price", price);
     formData.append("description", description);
@@ -44,7 +44,7 @@ const AddProduct = () => {
 
       const data = await res.json();
       console.log(data);
-      router.push("/dashboard/products");
+      //router.push("/dashboard/products");
     } catch (error) {}
 
    
