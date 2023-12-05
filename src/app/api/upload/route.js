@@ -9,6 +9,7 @@ cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
+  secure:true
 });
 
 export async function POST(req) {
@@ -21,6 +22,8 @@ export async function POST(req) {
   const stock = data.get("stock");
 
   console.log(image);
+
+  try {
 
   if (!image) {
     return NextResponse.json("No se ha subido la imagen ", { status: 400 });
@@ -51,7 +54,7 @@ export async function POST(req) {
 
 
 
-  try {
+ 
     await connectDb();
     const newproduct = await new Products({
       title,

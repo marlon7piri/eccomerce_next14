@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Button, Textarea } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
-import axios from "axios";
+import axios from "axios"; 
 
 
 const url = "http://localhost:3000";
@@ -45,7 +45,9 @@ const AddProduct = () => {
       
        router.push("/dashboard/products");
       router.refresh(); 
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (

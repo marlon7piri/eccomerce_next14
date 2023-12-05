@@ -9,7 +9,6 @@ export default async function Users( {searchParams}) {
 
   const data = await fetchUser(q);
 
-  console.log(data)
  
 
 
