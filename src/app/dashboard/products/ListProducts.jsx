@@ -1,31 +1,14 @@
 import Link from "next/link";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense} from "react";
 import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
 
-import { DeleteIcon } from "@/app/components/icons/DeleteIcon";
-import { EditIcon } from "@/app/components/icons/EditIcon";
 
-const ListOfProducts = ({ productos, setProductos, reload, setReload }) => {
-  const [loading, setLoading] = useState(false);
-  const deleteAProductControllers = async (id) => {
-    try {
-      setLoading(true);
-      const data = await fetch(`/api/product/${id}`, {
-        method: "DELETE",
-      });
-      const productdeleted = await data.json();
+import Buttons from "./Buttons";
 
-      setProductos(productos.filter((item) => item._id !== productdeleted._id));
+const ListOfProducts = ({ productos }) => {
 
-      setReload(!reload);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
-  };
-
+ 
   return (
     <Suspense fallback={<Skeleton isLoaded={true} />}>
       <div className="w-full h-full relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -66,7 +49,7 @@ const ListOfProducts = ({ productos, setProductos, reload, setReload }) => {
                     className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                     key={product._id}
                   >
-                    <th>
+                   {product.image && <th>
                       <Image
                         src={product?.image}
                         width={38}
@@ -74,29 +57,17 @@ const ListOfProducts = ({ productos, setProductos, reload, setReload }) => {
                         alt="una imagen"
                         className="object-cover"
                       />
-                    </th>
+                    </th>}
                     <td className="px-6 py-4 text-gray-900">{product.title}</td>
                     <td className="px-6 py-4">${product.price}</td>
-                   
+
                     <td className="px-6 py-4">{product.stock}</td>
                     <td className="px-6 py-4">
                       {product.createdAt?.replace("T", " ").substring(0, 10)}
                     </td>
-                 
 
                     <td className="w-max px-2 py-2  flex gap-1 justify-center items-center">
-                      <Link
-                        href={`/dashboard/products/${product._id}`}
-                        className="px-4 py-1 rounded bg-sky-500 font-medium text-slate-900 dark:text-blue-500 hover:bg-sky-700"
-                      >
-                        <EditIcon />
-                      </Link>
-                      <span
-                        onClick={() => deleteAProductControllers(product._id)}
-                        className="px-4 py-1 rounded bg-red-500 font-medium text-slate-900   dark:text-blue-500 hover:bg-red-700 hover:cursor-pointer"
-                      >
-                        <DeleteIcon />
-                      </span>
+                      <Buttons productid={product._id} />
                     </td>
                   </tr>
                 );

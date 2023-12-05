@@ -10,6 +10,8 @@ export async function GET(req,res) {
     const allproducts = await Products.find();
 
     if (!allproducts) return NextResponse.status(404);
+
+    console.log(allproducts);
   
       return NextResponse.json(allproducts);
       
@@ -21,18 +23,24 @@ export async function GET(req,res) {
 }
 
 export async function POST(req) {
-  const product = await req.json();
-  const { title, price, description, stock, image } = product;
+  const data = await req.formData();
+  const title = data.get("title");
+  const price = data.get("price");
+  const description = data.get("description");
+  const stock = data.get("stock");
+  const image = data.get("image");
 
+
+  const productnew = {
+    title,
+    price,
+    description,
+    stock,
+    image:image || "",
+  }
   try {
     await connectDb();
-    const allproducts = await new Products({
-      title,
-      price,
-      description,
-      stock,
-      image,
-    });
+    const allproducts = await new Products(productnew);
 
 
    

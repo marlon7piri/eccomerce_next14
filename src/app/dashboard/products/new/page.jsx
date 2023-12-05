@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Image from "next/image";
 import { addProduct } from "@/app/libs/actions";
@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { Button, Textarea } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
+import axios from "axios";
 
 const AddProduct = () => {
   const router = useRouter();
@@ -20,43 +21,43 @@ const AddProduct = () => {
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
   const [stock, setStock] = useState(0);
+  const form = useRef(null)
 
   const handlerChange = async (e) => {
     e.preventDefault();
+    form.current.reset();
     const formData = new FormData();
     formData.append("image", imagen);
-    //formData.append("upload_preset", "alalmapreset");
     formData.append("title", title);
     formData.append("price", price);
     formData.append("description", description);
     formData.append("stock", stock);
 
     try {
-      const res = await fetch(
-        `https://eccomerce-next14.vercel.app/api/upload`,
-        {
-          method: "POST",
+      const res = await axios.post(`/api/upload`,formData, {
+        "Content-Type": "multipart/form-data",
+      });
 
-          body: formData,
-        },
-        { cache: "no-store" }
-      );
-
-      const data = await res.json();
-      console.log(data);
-      //router.push("/dashboard/products");
+      
+      console.log(res);
+       router.push("/dashboard/products");
+      router.refresh(); 
     } catch (error) {}
-
-   
   };
 
   return (
-    <form className="w-full h-full p-4" onSubmit={handlerChange}>
+    <form className="w-3/4 h-full  flex flex-col gap-4 p-4" onSubmit={handlerChange} ref={form}>
       <input type="text" onChange={(e) => setTitle(e.target.value)} />
       <input type="number" onChange={(e) => setPrice(e.target.value)} />
       <input type="text" onChange={(e) => setDescription(e.target.value)} />
       <input type="number" onChange={(e) => setStock(e.target.value)} />
       <input type="file" onChange={(e) => setImagen(e.target.files[0])} />
+     { imagen && <Image
+        src={URL.createObjectURL(imagen ) }
+        alt={ "/next.svg"}
+        width={84}
+        height={84}
+      />}
 
       <Button color="success" type="submit">
         Crear

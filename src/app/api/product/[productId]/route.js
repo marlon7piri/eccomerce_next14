@@ -36,11 +36,15 @@ export async function DELETE(req, { params }) {
 export async function PUT(req, { params }) {
   const id = params.productId;
 
-  const product = await req.json();
-  const { title, price, description, stock } = product;
-
+  const data = await req.formData();
+  const title = data.get("title");
+  const price = data.get("price");
+  const description = data.get("description");
+  const stock = data.get("stock");
+  const image = data.get("image");
   try {
-    const productatupdated = { title, price, description, stock };
+    const productatupdated = { title, price, description, stock, image };
+    console.log(productatupdated);
     connectDb();
     const productupdated = await Products.findByIdAndUpdate(
       id,

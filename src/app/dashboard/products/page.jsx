@@ -1,32 +1,18 @@
-"use client";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 import ListOfProducts from "./ListProducts";
 import SearchProducts from "./SearchProducts";
 
-import { getAllProduct } from "@/app/controllers/product/product.controllers";
+import axios from "axios";
 
-export default function Products() {
-  const [productos, setProductos] = useState([]);
-  const [reload, setReload] = useState(false);
-
-  useEffect(() => {
-    const fetchall = async () => {
-      const data = await getAllProduct();
-
-      setProductos(data);
-    };
-    fetchall();
-  }, [reload]);
+export default async function Products() {
+  const productos = await axios.get('http://localhost:3000/api/product');
+  console.log(productos.data)
 
   return (
     <div>
       <SearchProducts />
-      <ListOfProducts
-        productos={productos}
-        setProductos={setProductos}
-        reload={reload}
-        setReload={setReload}
-      />
+      <ListOfProducts productos={productos.data} />
     </div>
   );
 }

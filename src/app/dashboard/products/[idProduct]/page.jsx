@@ -1,17 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 import Image from "next/image";
 import {getOnlyAProduct} from '@/app/controllers/product/product.controllers'
 
-async function EditProduct({params}) {
+ function EditProduct({params}) {
 
   const {register,handleSubmit,formState:{errors}} =useForm()
+
+
+  useEffect(()=>{
+const getAproduct=async ()=>{
+  const productupdated  =  await getOnlyAProduct(params.idProduct)
+   console.log(productupdated) 
+}
+getAproduct()
+  },[])
   
-    const userfound  =  await getOnlyAProduct(params.idProduct)
-   /*  console.log(userfound) */
+    
   return (
     <form className="w-full h-full p-4">
      
