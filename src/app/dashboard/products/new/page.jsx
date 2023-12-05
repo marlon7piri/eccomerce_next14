@@ -9,6 +9,10 @@ import { Button, Textarea } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import axios from "axios";
 
+
+const url = "http://localhost:3000";
+const url2 = "https://eccomerce-next14.vercel.app"
+
 const AddProduct = () => {
   const router = useRouter();
   const {
@@ -34,12 +38,11 @@ const AddProduct = () => {
     formData.append("stock", stock);
 
     try {
-      const res = await axios.post(`/api/upload`,formData, {
+      const res = await axios.post(`${url2}/api/upload`,formData, {
         "Content-Type": "multipart/form-data",
       });
 
       
-      console.log(res);
        router.push("/dashboard/products");
       router.refresh(); 
     } catch (error) {}
