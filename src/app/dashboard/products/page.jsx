@@ -8,7 +8,6 @@ const url = "http://localhost:3000";
 const url2 = "https://eccomerce-next14.vercel.app"
 export default async function Products() {
   const productos = await axios.get(`${url2}/api/product`);
-  console.log(productos.data)
 
   return (
     <div>

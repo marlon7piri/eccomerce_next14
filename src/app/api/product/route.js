@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect,router } from "next/navigation";
 import { NextResponse } from "next/server";
 
-export async function GET(req,res) {
+export async function GET() {
   try {
     connectDb();
     const allproducts = await Products.find();
