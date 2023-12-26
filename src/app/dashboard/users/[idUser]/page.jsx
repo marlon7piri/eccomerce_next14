@@ -1,7 +1,7 @@
 import React from "react";
 
 import Image from "next/image";
-import { editUser, getOnlyAUser } from "@/app/libs/actions";
+import { editUser, getOnlyAUser } from "../../../libs/actions";
 
 const EditUser = async ({params}) => {
 

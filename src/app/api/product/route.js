@@ -1,8 +1,6 @@
-import { Products } from "@/app/libs/models";
-import { connectDb } from "@/app/libs/mongodb";
-import { revalidatePath } from "next/cache";
-import { redirect,router } from "next/navigation";
+import { connectDb } from "../../libs/mongodb";
 import { NextResponse } from "next/server";
+import { Products } from "../../libs/models";
 
 export async function GET() {
   try {
@@ -11,7 +9,7 @@ export async function GET() {
 
     if (!allproducts) return NextResponse.status(404);
 
-    console.log(allproducts);
+    
   
       return NextResponse.json(allproducts);
       
@@ -29,6 +27,9 @@ export async function POST(req) {
   const description = data.get("description");
   const stock = data.get("stock");
   const image = data.get("image");
+  const rating = data.get("rating");
+
+  console.log(rating);
 
 
   const productnew = {
@@ -36,6 +37,7 @@ export async function POST(req) {
     price,
     description,
     stock,
+    rating,
     image:image || "",
   }
   try {

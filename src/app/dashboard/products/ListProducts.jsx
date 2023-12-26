@@ -31,6 +31,9 @@ const ListOfProducts = ({ productos }) => {
               <th scope="col" className="px-6 py-3">
                 Created At
               </th>
+              <th scope="col" className="px-6 py-3">
+                Rating
+              </th>
 
               <th scope="col" className="px-6 py-3">
                 Accion
@@ -65,6 +68,7 @@ const ListOfProducts = ({ productos }) => {
                     <td className="px-6 py-4">
                       {product.createdAt?.replace("T", " ").substring(0, 10)}
                     </td>
+                   <td className="px-6 py-4">{product.rating}</td> 
 
                     <td className="w-max px-2 py-2  flex gap-1 justify-center items-center">
                       <Buttons productid={product._id} />

@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { writeFile } from "fs/promises";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
-import { Products } from "@/app/libs/models";
-import { connectDb } from "@/app/libs/mongodb";
+import { Products } from "../../libs/models";
+import { connectDb } from "../../libs/mongodb";
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -20,8 +20,10 @@ export async function POST(req) {
   const price = data.get("price");
   const description = data.get("description");
   const stock = data.get("stock");
+  const rating = data.get("rating");
 
-  console.log(image);
+  console.log(rating);
+
 
   try {
     if (!image) {
@@ -49,7 +51,6 @@ export async function POST(req) {
         .end(buffer);
     });
 
-    console.log(response);
 
     await connectDb();
     const newproduct = await new Products({
@@ -57,12 +58,13 @@ export async function POST(req) {
       price,
       description,
       stock,
+      rating,
       image: response.secure_url,
     });
     console.log(newproduct);
 
     const productsaved = await newproduct.save();
-
+console.log(productsaved);
     if (!productsaved) return NextResponse.status(404);
 
     return NextResponse.json(productsaved);

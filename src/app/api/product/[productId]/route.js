@@ -1,7 +1,6 @@
-import { Products } from "@/app/libs/models";
-import { connectDb } from "@/app/libs/mongodb";
+import { Products } from "../../../libs/models";
+import { connectDb } from "../../../libs/mongodb";
 import { NextResponse } from "next/server";
-import { redirect, router } from "next/navigation";
 
 export async function GET(req, { params }) {
   const id = params.productId;

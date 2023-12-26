@@ -1,7 +1,7 @@
 import React from "react";
 import SearchUsers from "./SearchUsers";
 import ListOfUsers from "./ListOfUsers";
-import { fetchUser } from "@/app/libs/data";
+import { fetchUser } from "../../libs/data";
 import Pagination from "./Pagination";
 
 export default async function Users( {searchParams}) {
@@ -17,7 +17,7 @@ export default async function Users( {searchParams}) {
     
        
       <div className="w-full h-full overflow-y-scroll">
-        <h1 className="text-center text-gray-50 font-bold text-2xl">Users</h1>
+        <h1 className="text-center text-gray-900 font-bold text-2xl">Users</h1>
 
         <SearchUsers />
         <ListOfUsers  data={data}/>

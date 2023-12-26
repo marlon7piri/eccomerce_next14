@@ -1,15 +1,21 @@
-import  React from "react"
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
+import NavClient from "./client/NavClient";
+import Header from "./client/Header";
+import InfoProductos from "./client/InfoProductos";
+import Footer from "./client/Footer";
+import PromocionesInfo from "./client/PromocionesInfo";
+import Newsletter from "./client/Newsletter";
 
 export default function Home() {
   return (
-    <main className="bg-gray-900  w-full h-screen flex justify-center items-center">
-    <Link href="/dashboard" className="bg-blue-500 text-gray-50 px-4 py-2 rounded">
-      Ir al Panel de Administrador
-    </Link>
-    
-    </main>
+    <section className="bg-gray-50  w-full h-full overflow-hidden">
+      <Header />
 
-   
-  )
+      <InfoProductos />
+      <PromocionesInfo />
+      <Newsletter />
+      <Footer />
+    </section>
+  );
 }

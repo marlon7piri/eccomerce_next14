@@ -1,16 +1,28 @@
+"use client";
 import React from "react";
 
 import Image from "next/image";
-import { addUser } from "@/app/libs/actions";
+import { addUser } from "../../../libs/actions";
+import { CldUploadButton,CldImage,getCldImageUrl  } from "next-cloudinary";
 
 const AddUser = () => {
+
+
+
+  const url = getCldImageUrl({
+    width: 960,
+    height: 600,
+    src: '365676634229152'
+  });
+
+  console.log(url)
   return (
-    <form className="w-full h-full p-4" action={addUser}>
+    <form className="w-3/4 h-full p-4  text-gray-900" action={addUser}>
       <fieldset className="w-full h-full border border-gray-200 p-1 flex gap-4">
         <div className="w-80 h-80 p-4 bg-slate-200">
-          <Image src={"/next.svg"} alt="una imagen" width={84} height={84} />
+          <Image src={url} alt="una imagen" width={84} height={84} />
         </div>
-        <legend className="text-center text-gray-50 text-2xl">
+        <legend className="text-center text-gray-900 text-2xl">
           Create User
         </legend>
         <div className="w-full flex flex-col gap-4">
@@ -55,6 +67,23 @@ const AddUser = () => {
             <option value={true}>Activo</option>
             <option value={false}>Inactivo</option>
           </select>
+          <CldUploadButton
+            uploadPreset="alalmapreset"
+            width="960"
+            height="600"
+            remove
+            className="w-max p-4 rounded-md bg-green-600"
+          />
+
+          <CldImage
+            width="960"
+            height="600"
+            src="<Your Public ID>"
+            sizes="100vw"
+            removeBackground
+            alt=""
+          />
+
           <input
             type="submit"
             value="Crear"

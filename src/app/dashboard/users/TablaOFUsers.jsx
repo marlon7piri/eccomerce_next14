@@ -1,4 +1,4 @@
-import { deleteUser } from '@/app/libs/actions';
+import { deleteUser } from '../../libs/actions';
 import Link from 'next/link';
 import React from 'react'
 

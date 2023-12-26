@@ -43,17 +43,17 @@ function Aside() {
 
   
   return (
-    <div className="bg-gray-800 flex flex-col gap-2">
+    <div className="w-[20%] h-screen bg-slate-50 flex flex-col gap-2">
       {links.map((link) => {
         return (
           <Link
             href={link.href}
-            className={`mt-4 w-full flex gap-2 hover:bg-gray-900 duration-300 text-gray-50  px-4 py-2  ${
-              pathname === link.href ? "bg-gray-900 text-gray-50" : ""
+            className={`mt-4 w-full flex gap-2 hover:bg-gray-200 duration-300 text-gray-900  px-4 py-2  ${
+              pathname === link.href ? "bg-gray-200 text-gray-50" : ""
             }`}
           
            key={link.label}>
-            <span className="text-gray-50">{link.icon}</span> 
+            <span className="text-gray-900">{link.icon}</span> 
             <p className="">{link.label}</p>
           </Link>
         );

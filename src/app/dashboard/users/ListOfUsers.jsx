@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Link from "next/link";
-import { deleteUser } from "@/app/libs/actions";
+import { deleteUser } from "../../libs/actions";
 import TablaOFUsers from "./TablaOFUsers";
 
 const ListOfUsers = ({ data }) => {

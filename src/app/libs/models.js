@@ -15,8 +15,7 @@ const UserSchema = new mongoose.Schema({
     unique: true,
   },
   phone: {
-    type: String
-    
+    type: String,
   },
   isAdmin: {
     type: Boolean,
@@ -28,7 +27,7 @@ const UserSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-  }
+  },
 });
 
 const ProductsSchema = new mongoose.Schema(
@@ -48,43 +47,20 @@ const ProductsSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
+    rating: {
+      type: String,
+    },
     image: {
       type: String,
-    }  ,
+    },
 
     createdAt: {
       type: Date,
-    }, 
+    },
   },
   { timestamps: true }
 );
 
-/* const SedeSchemma = new mongoose.Schema({
-  capacidad: Number,
-  direccion: String,
-  horario: String,
-
-  imagen: String,
-  ruc: String,
-  sede: String,
-  telefono: String,
-});
-
-const ReservaSchema = new mongoose.Schema({
-  nombre: String,
-  fecha: String,
-  comensales: Number,
-  hora: String,
-  email: String,
-  nota: String,
-
-  sede: String,
-}); */
-
 export const User = mongoose.models.User || mongoose.model("User", UserSchema);
 export const Products =
   mongoose.models.Products || mongoose.model("Products", ProductsSchema);
-/* export const Sedes =
-  mongoose.models.Sedes || mongoose.model("Sedes", SedeSchemma);
-export const Reservas =
-  mongoose.models.Reservas || mongoose.model("Reservas", ReservaSchema); */

@@ -4,9 +4,9 @@ import Aside from "../components/Aside";
 
 const layout = ({ children }) => {
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex w-full h-screen ">
       <Aside />
-<div className="bg-gray-900 w-full h-screen p-4  ">
+<div className="bg-slate-200 w-full h-screen p-4 overflow-scroll">
 {children}
 </div>
       

@@ -25,14 +25,14 @@ const SearchProducts = () => {
   }, 300);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between mb-8">
       <input
         onChange={handlerSearch}
         type="text"
         placeholder="Find users..."
         className="p-2  rounded-sm border-slate-800"
       />
-      <Link href="/dashboard/products/new" className="bg-slate-50 px-3 py-2 rounded text-slate-900">New Product</Link>
+      <Link href="/dashboard/products/new" className="bg-green-900 px-3 py-2 rounded text-slate-50">New Product</Link>
     </div>
   );
 };

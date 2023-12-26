@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { DeleteIcon } from "@/app/components/icons/DeleteIcon";
-import { EditIcon } from "@/app/components/icons/EditIcon";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
+import { EditIcon } from "../../components/icons/EditIcon"
+import { DeleteIcon } from "../../components/icons/DeleteIcon";
 
 const url = "http://localhost:3000";
 const url2 = "https://eccomerce-next14.vercel.app"
@@ -18,7 +18,7 @@ const Buttons = ({ productid }) => {
     try {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
-        const res = await axios.delete(`${url2}/api/product/${productid}`);
+        const res = await axios.delete(`${url}/api/product/${productid}`);
 
         router.refresh();
 
