@@ -19,15 +19,18 @@ const Buttons = ({ productid }) => {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
         const res = await fetch(
-          `https://eccomerce-next14.vercel.app/api/product/${productid}`,{
-            method:"DELETE",
-          
+          `https://eccomerce-next14.vercel.app/api/product/${productid}`,
+          {
+            method: "DELETE",
+          },{
+            cache:"no-cache"
           }
         );
 
         if (!res.ok) {
           alert("Error al borrar el producto");
         }
+        router.push('/dashboard/product')
         router.refresh();
 
         setLoading(false);

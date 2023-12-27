@@ -46,14 +46,13 @@ const AddProduct = () => {
             "Content-Type": "multipart/form-data",
           },
           body: JSON.stringify(formData),
+        },{
+          cache:"no-store"
         }
       );
 
-     
-
       if (!res.ok) {
-        alert("Error al cargar los productos");
-        return;
+        throw new Error("Fallo al eliminar el producto");
       }
 
       router.push("/dashboard/products");
