@@ -9,9 +9,8 @@ import { button } from "@nextui-org/react";
 const NavClient = () => {
   const { data: session, status } = useSession();
 
-  console.log(session);
 
-  if (!session?.user?.email !== "marlon7piri@gmail.com") {
+  if (!session?.user?.email) {
     redirect("/");
   }else{
     redirect("/dashboard");
