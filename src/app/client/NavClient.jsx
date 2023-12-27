@@ -10,7 +10,7 @@ const NavClient = () => {
   const { data: session, status } = useSession();
 
 
-  if (!session) {
+  if (!session?.user) {
     redirect("/");
   }else{
     redirect("/dashboard");
