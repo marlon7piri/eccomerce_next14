@@ -5,7 +5,7 @@ import Image from "next/image";
 import CardProductos from "./CardProductos";
 
 const InfoProductos = async () => {
-  const data = await axios.get(`/api/product`);
+  const data = await axios.get(`${process.env.NEXTAUTH_URL}/api/product`);
 
   return (
     <div className=" w-full  h-full mt-20 bg-slate-50 p-2 flex flex-col  justify-center items-center" id="infoproduct">
