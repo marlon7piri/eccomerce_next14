@@ -11,8 +11,10 @@ const NavClient = () => {
 
   console.log(session);
 
-  if (!session?.user?.email === "marlon7piri@gmail.com") {
-    redirect("/login");
+  if (!session?.user?.email !== "marlon7piri@gmail.com") {
+    redirect("/");
+  }else{
+    redirect("/dashboard");
   }
 
   const openMenu = () => {

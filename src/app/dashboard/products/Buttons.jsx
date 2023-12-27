@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import {revalidatePath} from 'next/cache'
 import React, { useState } from "react";
 import axios from "axios";
 import { EditIcon } from "../../components/icons/EditIcon";
@@ -30,8 +31,9 @@ const Buttons = ({ productid }) => {
         if (!res.ok) {
           alert("Error al borrar el producto");
         }
-        router.push('/dashboards')
-        router.refresh();
+        router.push('/dashboard')
+        revalidatePath('/dashboard/products')
+
 
         setLoading(false);
       }
