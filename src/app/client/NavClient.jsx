@@ -21,7 +21,7 @@ const NavClient = () => {
   };
 
   return (
-    <div className="w-full  p-4 overflow-hidden">
+    <div className=" bg-slate-50 w-full  p-4 overflow-hidden">
       <div className="w-full flex justify-between items-center overflow-hidden">
         <h2>Pizzas.Hub</h2>
         <span>{session?.user?.name}</span>

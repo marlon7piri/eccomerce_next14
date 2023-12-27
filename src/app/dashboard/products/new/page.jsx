@@ -55,7 +55,7 @@ const AddProduct = () => {
         throw new Error("Fallo al eliminar el producto");
       }
 
-      router.push("/dashboard/products");
+      router.push("/dashboard");
       router.refresh();
     } catch (error) {
       console.log(error);
