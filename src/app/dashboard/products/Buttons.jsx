@@ -19,7 +19,7 @@ const Buttons = ({ productid }) => {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
         const res = await axios.delete(
-          `/api/product/${productid}`
+          `https://eccomerce-next14.vercel.app/api/product/${productid}`
         );
 
         if (!res.ok) {

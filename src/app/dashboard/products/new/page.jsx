@@ -37,7 +37,7 @@ const AddProduct = () => {
     formData.append("rating", rating);
 
     try {
-      const res = await axios.post(`/api/upload`, formData, {
+      const res = await axios.post(`https://eccomerce-next14.vercel.app/api/upload`, formData, {
         "Content-Type": "multipart/form-data",
       });
 
