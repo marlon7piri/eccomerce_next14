@@ -3,7 +3,7 @@ import "./formlogin.module.css";
 import axios from "axios";
 
 const Login = async (users) => {
-  const res = await axios.post("http://localhost:3000/api/login", users);
+  const res = await axios.post(`${process.env.NEXTAUTH_URL}/api/login`, users);
 
   console.log(res.data);
 };

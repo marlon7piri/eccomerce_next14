@@ -43,7 +43,6 @@ export async function PUT(req, { params }) {
   const image = data.get("image");
   try {
     const productatupdated = { title, price, description, stock, image };
-    console.log(productatupdated);
     connectDb();
     const productupdated = await Products.findByIdAndUpdate(
       id,

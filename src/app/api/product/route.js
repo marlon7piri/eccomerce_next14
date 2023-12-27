@@ -29,7 +29,6 @@ export async function POST(req) {
   const image = data.get("image");
   const rating = data.get("rating");
 
-  console.log(rating);
 
 
   const productnew = {

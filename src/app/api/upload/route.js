@@ -14,7 +14,6 @@ cloudinary.config({
 
 export async function POST(req) {
   const data = await req.formData();
-  console.log(data);
   const image = data.get("image");
   const title = data.get("title");
   const price = data.get("price");
@@ -22,7 +21,6 @@ export async function POST(req) {
   const stock = data.get("stock");
   const rating = data.get("rating");
 
-  console.log(rating);
 
 
   try {
@@ -61,10 +59,8 @@ export async function POST(req) {
       rating,
       image: response.secure_url,
     });
-    console.log(newproduct);
 
     const productsaved = await newproduct.save();
-console.log(productsaved);
     if (!productsaved) return NextResponse.status(404);
 
     return NextResponse.json(productsaved);
