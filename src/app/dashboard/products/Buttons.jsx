@@ -18,7 +18,7 @@ const Buttons = ({ productid }) => {
     try {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
-        const res = await axios.delete(`${url}/api/product/${productid}`);
+        const res = await axios.delete(`${process.env.NEXTAUTH_URL}/api/product/${productid}`);
 
         router.refresh();
 
