@@ -10,14 +10,14 @@ const NavClient = () => {
   const { data: session, status } = useSession();
 
 
-  if (!session?.user?.email) {
+  if (!session) {
     redirect("/");
   }else{
     redirect("/dashboard");
   }
 
   const openMenu = () => {
-    const menu = document.querySelector(".menu");
+    const menu = document.querySelector(".menu")
     menu.classList.toggle("show_menu");
   };
 
