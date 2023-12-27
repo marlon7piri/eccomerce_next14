@@ -30,7 +30,7 @@ const Buttons = ({ productid }) => {
         if (!res.ok) {
           alert("Error al borrar el producto");
         }
-        router.push('/dashboard/product')
+        router.push('/dashboard/products')
         router.refresh();
 
         setLoading(false);
