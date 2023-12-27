@@ -10,10 +10,8 @@ const NavClient = () => {
   const { data: session, status } = useSession();
 
 
-  if (!session?.user) {
+  if (!session?.user?.email) {
     redirect("/");
-  }else{
-    redirect("/dashboard");
   }
 
   const openMenu = () => {
