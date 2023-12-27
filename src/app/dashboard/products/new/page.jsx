@@ -37,11 +37,16 @@ const AddProduct = () => {
     formData.append("rating", rating);
 
     try {
-      const res = await axios.post(`${url}/api/upload`, formData, {
+      const res = await axios.post(`/api/upload`, formData, {
         "Content-Type": "multipart/form-data",
       });
 
       console.log(res.data);
+
+      if(!res.ok){
+        alert("Error al cargar los productos")
+        return
+      }
 
       router.push("/dashboard/products");
       router.refresh();

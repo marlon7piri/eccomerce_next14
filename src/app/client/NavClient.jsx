@@ -11,8 +11,6 @@ const NavClient = () => {
 
   console.log(session);
 
- 
-
   if (!session?.user?.email === "marlon7piri@gmail.com") {
     redirect("/login");
   }
@@ -27,16 +25,23 @@ const NavClient = () => {
       <div className="w-full flex justify-between items-center overflow-hidden">
         <h2>Pizzas.Hub</h2>
         <span>{session?.user?.name}</span>
-        {status ==='loading' ? 'loading...':""}
+        {status === "loading" ? "loading..." : ""}
 
         <ul className="menu">
           <li>Home</li>
           <li>Productos</li>
           <li>Contacto</li>
-          {!session?.user?.name ? <button onClick={signIn}>Login</button> : <button onClick={signOut}>Logout</button>}
+          {!session?.user?.name ? (
+            <button onClick={signIn}>Login</button>
+          ) : (
+            <div>
+              <button onClick={signOut}>Logout</button>
+              <Link href='/dashboard'>Dashboard</Link>
+            </div>
+          )}
         </ul>
-        <div className="menu_hamburguesa" onClick={()=>openMenu()}>
-          <HamburguesaIcon className="w-14 h-14"/>
+        <div className="menu_hamburguesa" onClick={() => openMenu()}>
+          <HamburguesaIcon className="w-14 h-14" />
         </div>
       </div>
     </div>

@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import axios from "axios";
-import { EditIcon } from "../../components/icons/EditIcon"
+import { EditIcon } from "../../components/icons/EditIcon";
 import { DeleteIcon } from "../../components/icons/DeleteIcon";
 
 const url = "http://localhost:3000";
-const url2 = "https://eccomerce-next14.vercel.app"
+const url2 = "https://eccomerce-next14.vercel.app";
 
 const Buttons = ({ productid }) => {
   const [loading, setLoading] = useState(false);
@@ -18,14 +18,19 @@ const Buttons = ({ productid }) => {
     try {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
-        const res = await axios.delete(`${process.env.NEXTAUTH_URL}/api/product/${productid}`);
+        const res = await axios.delete(
+          `/api/product/${productid}`
+        );
 
+        if (!res.ok) {
+          alert("Error al borrar el producto");
+        }
         router.refresh();
 
         setLoading(false);
       }
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
     setLoading(false);
   };
