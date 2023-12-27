@@ -1,5 +1,5 @@
-import { User } from "../../libs/models";
-import { connectDb } from "../../libs/mongodb"
+import { User } from "../../../libs/models";
+import { connectDb } from "../../../libs/mongodb"
 import { NextResponse } from "next/server"; 
 
  export async function GET () {
