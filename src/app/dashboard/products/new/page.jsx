@@ -37,15 +37,23 @@ const AddProduct = () => {
     formData.append("rating", rating);
 
     try {
-      const res = await axios.post(`https://eccomerce-next14.vercel.app/api/upload`, formData, {
-        "Content-Type": "multipart/form-data",
-      });
+      const res = await fetch(
+        `https://eccomerce-next14.vercel.app/api/upload`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "multipart/form-data",
+            "Content-Type": "multipart/form-data",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      console.log(res.data);
+     
 
-      if(!res.ok){
-        alert("Error al cargar los productos")
-        return
+      if (!res.ok) {
+        alert("Error al cargar los productos");
+        return;
       }
 
       router.push("/dashboard/products");
@@ -156,17 +164,24 @@ const AddProduct = () => {
       </fieldset>
     </form> */
 
-    <form className="w-3/4 h-full p-4 bg-green-900"  onSubmit={handlerChange} ref={form}>
+    <form
+      className="w-3/4 h-full p-4 bg-green-900"
+      onSubmit={handlerChange}
+      ref={form}
+    >
       <fieldset className="w-full h-full border border-gray-200 p-1 flex gap-4">
         <div className="w-80 h-80 p-4 bg-slate-200 flex flex-col gap-2">
-         <div> {imagen && (
-            <Image
-              src={URL.createObjectURL(imagen)}
-              alt={"/next.svg"}
-              width={184}
-              height={184}
-            />
-          )}</div>
+          <div>
+            {" "}
+            {imagen && (
+              <Image
+                src={URL.createObjectURL(imagen)}
+                alt={"/next.svg"}
+                width={184}
+                height={184}
+              />
+            )}
+          </div>
           <input type="file" onChange={(e) => setImagen(e.target.files[0])} />
         </div>
         <legend className="text-center text-gray-900 text-2xl">
@@ -201,13 +216,16 @@ const AddProduct = () => {
             onChange={(e) => setStock(e.target.value)}
           />
           <span className="text-slate-50">Rating</span>
-          <select onChange={(e) => setRating(e.target.value)}  className="w-[120px] ">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
+          <select
+            onChange={(e) => setRating(e.target.value)}
+            className="w-[120px] "
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
           <input
             type="submit"
             value="Crear"
