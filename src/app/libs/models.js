@@ -50,8 +50,11 @@ const ProductsSchema = new mongoose.Schema(
     rating: {
       type: String,
     },
-    image: {
+    imageUrl: {
       type: String,
+    },
+    publicId :{
+      type:String
     },
 
     createdAt: {

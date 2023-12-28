@@ -13,22 +13,14 @@ cloudinary.config({
 });
 
 export async function POST(req) {
-  const data = await req.formData();
-  const image = data.get("image");
-  const title = data.get("title");
-  const price = data.get("price");
-  const description = data.get("description");
-  const stock = data.get("stock");
-  const rating = data.get("rating");
-
-
-
+  const { title, price, description, stock, rating, imageUrl,publicId } = await req.json();
+console.log(publicId);
   try {
-    if (!image) {
+    if (!imageUrl) {
       return NextResponse.json("No se ha subido la imagen ", { status: 400 });
     }
-    const bytes = await image.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    /* const bytes = await image.arrayBuffer();
+    const buffer = Buffer.from(bytes); */
 
     //crear la ruta del archivo
     //const rutaarchivo = path.join(process.cwd(), "public", image.name);
@@ -38,7 +30,7 @@ export async function POST(req) {
     //const response = await cloudinary.uploader.upload(rutaarchivo);
 
     //metodo sin guardar en memoria
-    const response = await new Promise((resolve, reject) => {
+    /* const response = await new Promise((resolve, reject) => {
       cloudinary.uploader
         .upload_stream({}, (error, result) => {
           if (error) {
@@ -47,8 +39,7 @@ export async function POST(req) {
           resolve(result);
         })
         .end(buffer);
-    });
-
+    }); */
 
     await connectDb();
     const newproduct = await new Products({
@@ -57,7 +48,8 @@ export async function POST(req) {
       description,
       stock,
       rating,
-      image: response.secure_url,
+      imageUrl,
+      publicId
     });
 
     const productsaved = await newproduct.save();

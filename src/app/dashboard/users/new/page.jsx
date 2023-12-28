@@ -68,7 +68,7 @@ const AddUser = () => {
             <option value={false}>Inactivo</option>
           </select>
           <CldUploadButton
-            uploadPreset="alalmapreset"
+            uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}
             width="960"
             height="600"
             remove

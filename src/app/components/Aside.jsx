@@ -37,6 +37,10 @@ function Aside() {
       label: "Settings",
       href: "/dashboard/settings",
       icon: <IoIosSettings />,
+    }, {
+      label: "Home",
+      href: "/",
+      icon: <MdSpaceDashboard />,
     }
 
   ];

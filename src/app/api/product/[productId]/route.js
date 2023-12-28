@@ -1,6 +1,7 @@
 import { Products } from "../../../libs/models";
 import { connectDb } from "../../../libs/mongodb";
 import { NextResponse } from "next/server";
+import { removeImage } from "../../removeImage/route";
 
 export async function GET(req, { params }) {
   const id = params.productId;
@@ -17,20 +18,7 @@ export async function GET(req, { params }) {
   }
 }
 
-export async function DELETE(req, { params }) {
-  const id = params.productId;
 
-  await connectDb();
-  try {
-    const productdeleted = await Products.findByIdAndDelete(id);
-
-    if (!productdeleted) return NextResponse.json(404);
-
-    return NextResponse.json(productdeleted);
-  } catch (error) {
-    return NextResponse.json({ message: error });
-  }
-}
 
 export async function PUT(req, { params }) {
   const id = params.productId;

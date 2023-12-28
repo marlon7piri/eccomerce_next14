@@ -5,7 +5,7 @@ import IconWhatsApp from "../icons/IconWhatsApp";
 
 const Footer = () => {
   return (
-    <div className="bg-slate-50 w-full h-screen text-slate-900 lg:grid lg:grid-cols-4 md:grid md:grid-cols-2 lsm:grid sm:grid-cols-1 p-4 gap-4  items-center justify-center">
+    <div className="bg-slate-50 w-full h-screen text-slate-900 lg:grid lg:grid-cols-4 md:grid md:grid-cols-2 lsm:grid sm:grid-cols-1 p-4 gap-4  items-center justify-center" id='contacto'>
      
       <div className=" flex items-start flex-col p-4 gap-4">
         <h2 className="text-3xl text-green-800 font-bold">Pizza.Hub</h2>

@@ -53,6 +53,8 @@ input{
 .menu{
   width: max-content;
   display: flex;
+  gap:20px;
+  margin-right: 2rem;
 }
 .links{
   display: flex;
@@ -90,7 +92,7 @@ input{
     right:0;
     width: 100%;
     height: 100vh;
-    transform: translateX(300px);
+    transform: translateX(800px);
     transition: .3s ease;
 
 }

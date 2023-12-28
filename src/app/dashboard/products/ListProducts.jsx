@@ -1,14 +1,11 @@
 import Link from "next/link";
-import React, { Suspense} from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import { Skeleton } from "@nextui-org/react";
-
 
 import Buttons from "./Buttons";
 
 const ListOfProducts = ({ productos }) => {
-
- 
   return (
     <Suspense fallback={<Skeleton isLoaded={true} />}>
       <div className="w-full h-full relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -52,15 +49,17 @@ const ListOfProducts = ({ productos }) => {
                     className=" bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                     key={product._id}
                   >
-                   {product.image && <th>
-                      <Image
-                        src={product?.image}
-                        width={38}
-                        height={38}
-                        alt="una imagen"
-                        className="object-cover"
-                      />
-                    </th>}
+                    {product?.imageUrl && (
+                      <th>
+                        <Image
+                          src={product?.imageUrl}
+                          width={38}
+                          height={38}
+                          alt="una imagen"
+                          className="object-cover"
+                        />
+                      </th>
+                    )}
                     <td className="px-6 py-4 text-gray-900">{product.title}</td>
                     <td className="px-6 py-4">${product.price}</td>
 
@@ -68,10 +67,12 @@ const ListOfProducts = ({ productos }) => {
                     <td className="px-6 py-4">
                       {product.createdAt?.replace("T", " ").substring(0, 10)}
                     </td>
-                   <td className="px-6 py-4">{product.rating}</td> 
+                    <td className="px-6 py-4">{product.rating}</td>
 
                     <td className="w-max px-2 py-2  flex gap-1 justify-center items-center">
-                      <Buttons productid={product._id} />
+                      <Buttons
+                        allproducto={product}
+                      />
                     </td>
                   </tr>
                 );

@@ -10,6 +10,8 @@ import Newsletter from "./client/Newsletter";
 export default function Home() {
   return (
     <section className="bg-gray-50  w-full h-full overflow-hidden">
+      <NavClient />
+
       <Header />
 
       <InfoProductos />

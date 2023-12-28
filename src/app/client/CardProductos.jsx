@@ -59,7 +59,7 @@ const CardProductos = ({ productos }) => {
     <div className={styles.cardproduct}>
       <figure className="w-[100%] h-[200px]">
         <img
-          src={productos.image}
+          src={productos.imageUrl}
           alt=""
           className="w-full h-full object-cover"
         />
@@ -82,7 +82,7 @@ const CardProductos = ({ productos }) => {
         </details>
 
         <button className="m-auto w-max flex gap-4 justify-evenly items-center   bg-green-800 rounded-md px-8 py-2 text-slate-50 hover:bg-green-500 transition duration-500">
-          <IconCart className="w-24 h-24 bg-pink-500" />
+          <IconCart className="w-24 h-24 " />
           <p className="text-2xl font-bold"> ${productos.price}</p>
         </button>
       </article>

@@ -1,5 +1,6 @@
 import React from "react";
 import Aside from "../components/Aside";
+import { Toaster } from "react-hot-toast";
 
 
 const layout = ({ children }) => {
@@ -9,7 +10,7 @@ const layout = ({ children }) => {
 <div className="bg-slate-200 w-full h-screen p-4 overflow-scroll">
 {children}
 </div>
-      
+      <Toaster/>
     </div>
   );
 };

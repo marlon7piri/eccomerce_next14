@@ -38,6 +38,7 @@ export async function POST(req) {
     stock,
     rating,
     image:image || "",
+    publicId
   }
   try {
     await connectDb();
@@ -54,3 +55,4 @@ export async function POST(req) {
     return NextResponse.json({ message: error });
   }
 }
+
