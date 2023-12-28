@@ -1,7 +1,7 @@
 import { connectDb } from "../../libs/mongodb";
 import { NextResponse } from "next/server";
 import { Products } from "../../libs/models";
-import { removeImage } from "../removeImage/route";
+import { removeImage } from "../removeimage/route";
 
 export async function DELETE(req) {
   const producto = await req.json();
