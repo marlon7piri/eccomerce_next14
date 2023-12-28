@@ -10,34 +10,33 @@ import toast from "react-hot-toast";
 const url = "http://localhost:3000";
 const url2 = "https://eccomerce-next14.vercel.app";
 
-const Buttons = ( {allproducto} ) => {
+const Buttons = ({ allproducto }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  console.log(allproducto)
+  console.log(allproducto);
 
-  const removeImage = async () => {
+  const removeImage = async (publicId) => {
     try {
       const res = await fetch(`${url2}/api/removeimage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(allproducto),
+        body: JSON.stringify({publicId}),
       });
     } catch (error) {
       console.log(error);
     }
   };
- 
+
   const deleteProduct = async () => {
     try {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
         const res = await fetch(
-          `${url2}/api/deleteproduct`,
+          `${url2}/api/product/${allproducto._id}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(allproducto),
           },
           {
             cache: "no-cache",
@@ -47,9 +46,12 @@ const Buttons = ( {allproducto} ) => {
         if (!res.ok) {
           toast.error("Error al borrar el producto");
         } else {
-         await removeImage(); 
+
+          const producto = await res.json()
+          const {publicId} =producto
+          await removeImage(publicId);
           toast.success("Producto eliminado");
-          router.refresh()
+          router.refresh();
         }
 
         revalidatePath("/dashboard/products");
