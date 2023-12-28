@@ -33,7 +33,7 @@ const Buttons = ( {allproducto} ) => {
       if (confirm("Seguro desea eliminar el producto")) {
         setLoading(true);
         const res = await fetch(
-          `${url2}/api/deleteProduct`,
+          `${url2}/api/deleteproduct`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
