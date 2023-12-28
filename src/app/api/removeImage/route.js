@@ -7,7 +7,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET,
   secure: true,
 });
-export const removeImage = async (publicId) => {
+ const removeImage = async (publicId) => {
 
   console.log(publicId);
   try {
