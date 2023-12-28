@@ -21,7 +21,7 @@ const Buttons = ({ allproducto }) => {
       const res = await fetch(`${url2}/api/removeimage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({publicId}),
+        body: JSON.stringify({ publicId }),
       });
     } catch (error) {
       console.log(error);
@@ -37,24 +37,18 @@ const Buttons = ({ allproducto }) => {
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
-          },
-          {
-            cache: "no-cache",
           }
         );
 
         if (!res.ok) {
           toast.error("Error al borrar el producto");
         } else {
-
-          const producto = await res.json()
-          const {publicId} =producto
+          const producto = await res.json();
+          const { publicId } = producto;
           await deleteImagen(publicId);
           toast.success("Producto eliminado");
           router.refresh();
         }
-
-        revalidatePath("/dashboard/products");
 
         setLoading(false);
       }

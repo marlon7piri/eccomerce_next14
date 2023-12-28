@@ -84,9 +84,6 @@ const AddProduct = () => {
             imageUrl,
             publicId
           }),
-        },
-        {
-          cache: "no-store",
         }
       );
 
