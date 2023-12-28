@@ -16,7 +16,7 @@ const Buttons = ({ allproducto }) => {
 
   console.log(allproducto);
 
-  const removeImage = async (publicId) => {
+  const deleteImagen = async (publicId) => {
     try {
       const res = await fetch(`${url2}/api/removeimage`, {
         method: "POST",
@@ -49,7 +49,7 @@ const Buttons = ({ allproducto }) => {
 
           const producto = await res.json()
           const {publicId} =producto
-          await removeImage(publicId);
+          await deleteImagen(publicId);
           toast.success("Producto eliminado");
           router.refresh();
         }
